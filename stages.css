@@ -1,0 +1,211 @@
+/* ==========================================================================
+   1. VARIABLES & CONFIGURATION GENERALE
+   ========================================================================== */
+:root {
+    --bg-color: #0A0A0A;
+    --card-bg: #141414;
+    --primary-yellow: #FFD700;
+    --accent-violet: #8A2BE2;
+    --text-main: #F2F2F2;
+    --text-dim: #A0A0A0;
+    --font-main: 'Inter', sans-serif;
+    --font-code: 'JetBrains Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- Effet de lueur en arrière-plan --- */
+.glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+    z-index: -1;
+}
+
+/* ==========================================================================
+   2. NAVIGATION
+   ========================================================================== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 10%;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-family: var(--font-code);
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--primary-yellow);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--primary-yellow);
+}
+
+/* ==========================================================================
+   3. STRUCTURE BENTO GRID
+   ========================================================================== */
+.section {
+    padding: 5rem 10%;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    border-left: 4px solid var(--primary-yellow);
+    padding-left: 1rem;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px;
+    gap: 1.5rem;
+}
+
+/* --- Item Bento de Base --- */
+.bento-item {
+    background: var(--card-bg);
+    border: 1px solid #222;
+    padding: 2rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Tailles Spécifiques Bento --- */
+.large { grid-column: span 2; }
+.tall  { grid-row: span 2; }
+
+
+/* ==========================================================================
+   4. COMPOSANT : CARTE STAGE (STAGE-CARD)
+   ========================================================================== */
+.bento-item.stage-card {
+    justify-content: space-between; /* Aligne le texte en haut, le logo en bas */
+}
+
+.bento-item.stage-card:hover {
+    border-color: var(--accent-violet);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.1);
+}
+
+/* --- Bloc Informations --- */
+.stage-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.bento-item.stage-card h3 {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--font-code);
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.stage-date {
+    color: var(--primary-yellow);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stage-company {
+    font-size: 1.3rem;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.stage-location {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-family: var(--font-code);
+}
+
+/* --- Bloc Logo de la carte --- */
+.container_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container_logo img {
+    max-height: 55px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(1) invert(1) brightness(1.8);
+    mix-blend-mode: screen;
+    transition: transform 0.3s ease;
+}
+
+/* Animation du logo au survol de la carte */
+.bento-item.stage-card:hover .container_logo img {
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   5. FOOTER & RESPONSIVE
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 4rem;
+    border-top: 1px solid #222;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .bento-grid { 
+        grid-template-columns: 1fr; 
+        grid-auto-rows: auto; 
+    }
+    .large { 
+        grid-column: span 1; 
+    }
+    nav ul { 
+        display: none; 
+    }
+}
