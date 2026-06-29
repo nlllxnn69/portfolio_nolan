@@ -1,0 +1,325 @@
+/* ==========================================================================
+   VARIABLES & CONFIGURATION GÉNÉRALE
+   ========================================================================== */
+:root {
+    --bg-color: #0A0A0A;
+    --card-bg: #141414;
+    --primary-yellow: #FFD700;
+    --accent-violet: #8A2BE2;
+    --text-main: #F2F2F2;
+    --text-dim: #A0A0A0;
+    --font-main: 'Inter', sans-serif;
+    --font-code: 'JetBrains Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   HERO BANNER (EN-TÊTE DU PROJET)
+   ========================================================================== */
+.project-hero, .frmf-hero {
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-violet);
+    position: relative;
+    padding: 0 10%;
+}
+
+.project-category {
+    font-family: var(--font-code);
+    color: var(--accent-violet);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.tech-stack {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tech-badge {
+    padding: 6px 16px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid var(--primary-yellow);
+    color: var(--primary-yellow);
+    border-radius: 5px;
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   SECTION TIMELINE (BANDE CHRONOLOGIQUE)
+   ========================================================================== */
+.timeline-section {
+    padding: 100px 10%;
+    position: relative;
+}
+
+/* La ligne verticale centrale */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-violet), var(--primary-yellow));
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    margin-bottom: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    /* États initiaux pour l'effet de fondu (Fade-in au scroll) */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Classe injectée par le JavaScript lors du défilement */
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-content {
+    width: 45%;
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid #222;
+}
+
+/* Alterne l'affichage des blocs à gauche et à droite */
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* Les puces sur la ligne centrale */
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--bg-color);
+    border: 4px solid var(--accent-violet);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.step-number {
+    font-family: var(--font-code);
+    color: var(--primary-yellow);
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+    display: block;
+}
+
+.timeline-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: #FFFFFF;
+}
+
+.timeline-content p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   SECTION GALERIE (PHOTOS DES ÉTAPES)
+   ========================================================================== */
+.section {
+    padding: 60px 10% 100px 10%;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    border-left: 4px solid var(--primary-yellow);
+    padding-left: 1rem;
+    color: #FFFFFF;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    height: 250px;
+    border-radius: 15px;
+    background: var(--card-bg);
+    border: 1px solid #222;
+    overflow: hidden;
+    cursor: pointer;
+    
+    /* Animation fluide du conteneur entier (Style cartes projets) */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                border-color 0.4s ease, 
+                box-shadow 0.4s ease;
+    z-index: 1;
+}
+
+.gallery-img-fixe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.4);
+    transition: filter 0.4s ease;
+}
+
+/* Volet d'overlay violet qui monte au survol */
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(138, 43, 226, 0.95));
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+}
+
+.gallery-overlay span {
+    font-family: var(--font-code);
+    color: var(--primary-yellow);
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+/* --- EFFETS HOVER DE LA GALERIE --- */
+.gallery-item:hover {
+    transform: scale(1.05);             /* Agrandissement du cadre */
+    border-color: var(--accent-violet);  /* Bordure violette */
+    box-shadow: 0 12px 30px rgba(138, 43, 226, 0.25); /* Halo néon sous la carte */
+    z-index: 10;                        /* Reste au-dessus des autres */
+}
+
+.gallery-item:hover .gallery-img-fixe {
+    filter: grayscale(0);               /* Rétablit les couleurs de l'image */
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);           /* Fait glisser la légende vers le haut */
+}
+
+/* ==========================================================================
+   FOOTER (BOUTON RETOUR)
+   ========================================================================== */
+footer {
+    padding: 6rem 0;
+    text-align: center;
+    border-top: 1px solid #1A1A1A;
+}
+
+footer a {
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+footer a:hover {
+    color: #FFFFFF !important;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 20px;
+        transform: none;
+    }
+    
+    .timeline-item {
+        flex-direction: row !important;
+        padding-left: 45px;
+        margin-bottom: 50px;
+    }
+    
+    .timeline-content {
+        width: 100%;
+        padding: 1.8rem;
+    }
+    
+    .timeline-dot {
+        left: 20px;
+        transform: translateX(-50%);
+    }
+    
+    .section {
+        padding: 40px 5% 60px 5%;
+    }
+}
+
+/* --- Bouton Noir Contour Blanc --- */
+.btn-site-web {
+    display: inline-block;
+    background-color: #000000;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem 2.5rem;
+    border: 1px solid #FFFFFF;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    /* Transition pour l'effet au survol */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* --- Bouton Noir Contour Blanc --- */
+.btn-site-web, a.btn-site-web {
+    display: inline-block;
+    background-color: #000000 !important;
+    color: #FFFFFF !important; /* Force le texte en blanc au repos */
+    text-decoration: none !important;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem 2.5rem;
+    border: 1px solid #FFFFFF !important;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet au survol (Hover) - Ciblage ultra-précis */
+.btn-site-web:hover, a.btn-site-web:hover {
+    background-color: #FFFFFF !important; /* Le fond devient blanc */
+    color: #000000 !important;            /* Le texte DEVIENT obligatoirement noir */
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}

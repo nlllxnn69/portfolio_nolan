@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails Projet | FRMF Dynamique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="C:/Users/M26I500/Downloads/portfolio/projets_details/website.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="frmf-hero">
+        <span class="project-category">Développement Web Dynamique</span>
+        <h1>Plateforme Web Fictive — FRMF</h1>
+        <div class="tech-stack">
+            <span class="tech-badge">PHP / MySQL</span>
+            <span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">CSS</span>
+        </div>
+    </header>
+
+    <section class="timeline-section">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="step-number">01. Modélisation</span>
+                <h3>Architecture de la Base de Données</h3>
+                <p>Création du schéma conceptuel des données (MCD) sur MySQL pour gérer dynamiquement les joueurs, les clubs de la Botola, les matchs et les actualités.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot" style="border-color: var(--primary-yellow);"></div>
+            <div class="timeline-content">
+                <span class="step-number">02. Backend / CRUD</span>
+                <h3>Développement du Panel Admin</h3>
+                <p>Mise en place d'un espace d'administration sécurisé en PHP pour permettre aux gestionnaires de modifier les scores en direct et d'ajouter des communiqués officiels.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="step-number">03. Interface Utilisateur</span>
+                <h3>Intégration Frontend</h3>
+                <p>Conception d'une interface épurée et moderne, tirant parti de Tailwind CSS pour un rendu fluide, rapide et totalement adapté aux mobiles.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot" style="border-color: var(--primary-yellow);"></div>
+            <div class="timeline-content">
+                <span class="step-number">04. Dynamisme AJAX</span>
+                <h3>Actualisation sans rechargement</h3>
+                <p>Intégration de requêtes JavaScript (Fetch API) pour mettre à jour le classement du championnat en temps réel sans recharger la page.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Maquettes & Captures d'Écran</h2>
+        <div class="gallery-grid">
+            
+            <div class="gallery-item">
+                <img src="C:\Users\M26I500\Downloads\portfolio\ressources\frmf_bdd.jpg" alt="Schéma BDD" class="gallery-img-fixe">
+                <div class="gallery-overlay"><span>01. Structure SQL</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="C:\Users\M26I500\Downloads\portfolio\ressources\frmf_admin.jpg" alt="Panel Admin PHP" class="gallery-img-fixe">
+                <div class="gallery-overlay"><span>02. Dashboard Admin</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="C:\Users\M26I500\Downloads\portfolio\ressources\frmf_home.jpg" alt="Page d'accueil FRMF" class="gallery-img-fixe">
+                <div class="gallery-overlay"><span>03. Interface Client</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="C:\Users\M26I500\Downloads\portfolio\ressources\frmf_live.jpg" alt="Tableau des scores" class="gallery-img-fixe">
+                <div class="gallery-overlay"><span>04. Module de Matchs Live</span></div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div style="margin-bottom: 3rem;">
+            <a href="#" class="btn-site-web">Voir le site Web ↗</a>
+        </div>
+        
+        <a href="C:\Users\M26I500\Downloads\portfolio\projets.html" style="color: var(--primary-yellow); text-decoration: none; font-family: 'JetBrains Mono'; font-size: 0.9rem;">
+            ← Retour aux projets
+        </a>
+    </footer>
+
+    <script>
+        // Script pour l'apparition au scroll (Fade-in)
+        const observerOptions = { threshold: 0.2 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
