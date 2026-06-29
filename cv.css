@@ -37,8 +37,10 @@
             border-bottom: 1px solid #222;
         }
 
-        img {
-            height: 75%;
-            width: 75%;
-            align-items: center;
-        }
+        .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    width: 100%;
+    min-height: 100vh;       
+}
