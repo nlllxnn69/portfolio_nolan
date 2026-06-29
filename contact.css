@@ -18,8 +18,7 @@
             overflow-x: hidden;
         }
 
-        /* --- Background Decor --- */
-        .glow-right {
+                .glow-right {
             position: fixed;
             width: 500px;
             height: 500px;
@@ -37,16 +36,27 @@
             border-bottom: 1px solid #222;
         }
 
-        .image_container {
-    display: flex;
-    justify-content: center;  
-    align-items: center;
-    width: 100%;
-    padding: 2rem 0;          
+main a {
+    color: var(--primary-yellow); /* Utilise ton jaune gold */
+    text-decoration: none;        /* Enlève le soulignement moche */
 }
 
-.cv {
-    max-width: 40%;
-    height: auto;
-    display: block;
+main a:hover {
+    text-decoration: underline;   /* Le soulignement réapparaît seulement quand on passe la souris dessus */
 }
+
+h1 {
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+    padding-top: 25px;
+}
+
+ footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid #222;
+            color: var(--text-dim);
+        }
